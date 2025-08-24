@@ -24,7 +24,7 @@ import { useProductTableQuery } from "../../../../../hooks/table/query/use-produ
 import { useDataTable } from "../../../../../hooks/use-data-table"
 import { productsLoader } from "../../loader"
 
-export const PAGE_SIZE = 5
+export const PAGE_SIZE = 100
 
 export const ProductListTable = () => {
   const { t } = useTranslation()
