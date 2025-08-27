@@ -18,12 +18,15 @@ if (typeof window !== "undefined") {
 export const importProductsQuery = async (file: File) => {
   const formData = new FormData()
   formData.append("file", file)
+  
+  // Get fresh token each time this function is called
+  const freshToken = window.localStorage.getItem("medusa_auth_token") || ""
 
   return await fetch(`${backendUrl}/vendor/products/import`, {
     method: "POST",
     body: formData,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${freshToken}`,
       "x-publishable-api-key": publishableApiKey,
     },
   })
@@ -37,12 +40,15 @@ export const uploadFilesQuery = async (files: any[]) => {
   for (const { file } of files) {
     formData.append("files", file)
   }
+  
+  // Get fresh token each time this function is called
+  const freshToken = window.localStorage.getItem("medusa_auth_token") || ""
 
   return await fetch(`${backendUrl}/vendor/uploads`, {
     method: "POST",
     body: formData,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${freshToken}`,
       "x-publishable-api-key": publishableApiKey,
     },
   })
